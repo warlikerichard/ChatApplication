@@ -1,23 +1,36 @@
-import { Header } from '@/components/Header'
+"use client";
+
+import { useRef } from 'react';
+import { useRouter } from 'next/navigation'
 import style from './page.module.scss';
-import { Chat } from '@/components/Chat';
+import * as io from 'socket.io-client';
 
 export default function Home() {
-  const messages = [
-    {content: 'Die, monster! You don\'t belong in this world!', isUser: true},
-    {content: 'It was not by my hand that I\'m once again given flesh. I was called here by humans who wish to pay me tribute.', isUser: false},
-    {content: '"Tribute"?! You steal men\'s souls, and make them your slaves!', isUser: true},
-    {content: 'Perhaps the same could be said of all religions.', isUser: false},
-    {content: 'Your words are as empty as your soul! Mankind ill needs a savior such as you!', isUser: true},
-    {content: 'What is a man? [flings his wine glass aside] A miserable little pile of secrets! But enough talk! Have at you!', isUser: false}
-  ]
+
+  const router = useRouter();
+
+  const loginRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+
+  function handleSubmit(){
+    const login = loginRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if(!login?.trim() || !password?.trim()) return
+
+    const socket = io.connect('http://localhost:3001');
+    
+    router.push('/chat');
+  }
 
   return (
-    <main className={style.main}>
-      <Header />
-      <div className={style.chat}>
-        <Chat messages={[...messages, ...messages, ...messages]} />
-      </div>
-    </main>
+    <div className={style.login}>
+      <h1>Welcome! Please sign in</h1>
+      <input type="text" name="login" placeholder='email' ref={loginRef}/>
+      <input type="password" name="password" placeholder='password' ref={passwordRef}/>
+
+      <button onClick={handleSubmit}>Entrar</button>
+    </div>
   )
 }

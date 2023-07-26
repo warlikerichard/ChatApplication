@@ -12,14 +12,18 @@
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "@types/socket.io": "^3.0.2",
     "next": "13.4.11",
     "node-sass": "^9.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "socket.io-client": "^4.7.1",
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "bufferutil": "^4.0.7",
     "react-icons": "^4.10.1",
-    "sass": "^1.64.0"
+    "sass": "^1.64.0",
+    "utf-8-validate": "^6.0.3"
   }
 }

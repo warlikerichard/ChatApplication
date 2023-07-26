@@ -1,3 +1,4 @@
+import { Header } from '@/components/Header';
 import './globals.css'
 import style from './layout.module.scss';
 import type { Metadata } from 'next'
@@ -14,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={style.bigContainer}>{children}</body>
+      <body className={style.bigContainer}>
+        <Header />
+          <main className={style.main}>
+            {children}
+          </main>
+        </body>
     </html>
   )
 }
