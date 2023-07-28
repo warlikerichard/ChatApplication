@@ -22,7 +22,7 @@ export function Chat({messages}: ChatProps){
             <div className={styles.chatContainer}>
                 {messages.map((message, key) => {
                     return (
-                        message.user == socket.username ? <div className={styles.user} key={key}>{message.user + ': ' + message.content}</div> : <div key={key} className={styles.friend}>{message.user + ': ' + message.content}</div>
+                        message.user == socket.username ? <div className={styles.user} key={key}>{'You: ' + message.content}</div> : <div key={key} className={styles.friend}>{message.user + ': ' + message.content}</div>
                     )
                 })}
                 
