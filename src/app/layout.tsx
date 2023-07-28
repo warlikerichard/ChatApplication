@@ -2,6 +2,8 @@ import { Header } from '@/components/Header';
 import './globals.css'
 import style from './layout.module.scss';
 import type { Metadata } from 'next'
+import { UserContextProvider } from '@/components/contexts/userContextProvider';
+import { ChatContextProvider } from '@/components/contexts/chatContextProvider';
 
 export const metadata: Metadata = {
   title: 'Chat test',
@@ -16,10 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={style.bigContainer}>
-        <Header />
+      <UserContextProvider>
+        <ChatContextProvider>
+          <Header />
           <main className={style.main}>
             {children}
           </main>
+        </ChatContextProvider>   
+      </UserContextProvider>
+        
         </body>
     </html>
   )
